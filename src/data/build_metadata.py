@@ -1780,6 +1780,33 @@ def main(config_path: Path) -> None:
         ]
     )
 
+    extended_metadata_rdata = dataset_path(
+    dataset_root,
+    dataset_config[
+        "extended_metadata_rdata"
+    ],
+    )
+
+    required_input_files = {
+    "image metadata CSV": image_metadata_csv,
+    "twin relationship RData": twin_pair_rdata,
+    "extended metadata RData": extended_metadata_rdata,
+    }
+
+    for name, path in required_input_files.items():
+        if not path.exists():
+            raise FileNotFoundError(
+                f"{name} does not exist:\n"
+                f"  {path}\n\n"
+                "Check the corresponding path in configs/data.yaml."
+            )
+
+    if not images_root.exists():
+        raise FileNotFoundError(
+            f"Images directory does not exist:\n"
+            f"  {images_root}"
+        )
+
     report_json = project_path(
         output_config[
             "report_json"
