@@ -1,0 +1,35 @@
+dataset:
+  # Your original ND-TWINS dataset.
+  # Keep this read-only.
+  root: "F:/Twins_DATABASE_232GB"
+
+  images_dir: "images"
+
+  image_metadata_csv: "images/image-metadata-2.0.csv"
+
+  twin_pair_rdata: "TwinsChallenge/data/TwinsPairTable.RData"
+
+  # Change this path if metaData.RData is stored somewhere else
+  # in your dataset.
+  extended_metadata_rdata: "TwinsChallenge/data/metaData.RData"
+
+  twin_pair_object: "TwinsPairTable"
+  extended_metadata_object: "xmlTable"
+
+  valid_image_extensions:
+    - ".nef"
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+    - ".bmp"
+    - ".tif"
+    - ".tiff"
+
+output:
+  metadata_csv: "data/metadata/nd_twins_metadata.csv"
+  report_json: "reports/metadata/metadata_build_summary.json"
+
+validation:
+  expected_image_rows: 24050
+  expected_subjects: 435
+  strict: true

@@ -1,0 +1,32 @@
+{
+  "images": 24050,
+  "unique_image_ids": 24050,
+  "subjects": 435,
+  "family_groups": 227,
+  "twin_groups": 205,
+  "monozygotic_groups": 184,
+  "standard_identical_edges": 174,
+  "standard_identical_subjects": 348,
+  "monozygotic_subjects": 369,
+  "fraternal_subjects": 32,
+  "unpaired_subjects": 22,
+  "external_relationship_edges": 5,
+  "missing_physical_images": 0,
+  "extra_physical_images": 0,
+  "extra_xml_rows": 300,
+  "yaw_distribution": {
+    "-90": 4227,
+    "-45": 4096,
+    "0": 7423,
+    "45": 4064,
+    "90": 4240
+  },
+  "expression_distribution": {
+    "smiling": 12027,
+    "neutral": 12023
+  },
+  "illumination_distribution": {
+    "controlled": 16360,
+    "uncontrolled": 7690
+  }
+}
