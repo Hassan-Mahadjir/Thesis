@@ -1,0 +1,75 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE / editor
+.vscode/
+.idea/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+logs/
+
+# Dataset
+# Keep raw / large data outside Git.
+data/raw/
+data/source/
+
+# Generated metadata / QC outputs
+data/metadata/nd_twins_metadata.csv
+data/metadata/nd_twins_metadata_qc.csv
+
+# Processed images
+data/processed/
+
+# Generated reports
+reports/qc/
+reports/figures/
+
+# Model checkpoints / trained weights
+checkpoints/
+weights/
+runs/
+wandb/
+
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Large external model assets
+# models/mediapipe/*.task
+
+# Temporary files
+*.tmp
+*.temp
+~$*

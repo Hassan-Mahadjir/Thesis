@@ -1,0 +1,84 @@
+input:
+  metadata_csv: "data/metadata/nd_twins_metadata.csv"
+
+output:
+  metadata_csv: "data/metadata/nd_twins_metadata_qc.csv"
+
+  # Canonical 112x112 input for pretrained ArcFace/AdaFace.
+  aligned_112_arcface_dir: "data/processed/aligned_112_arcface"
+
+  # Full-face 112x112 representation.
+  # Same field of view as the 448 version.
+  aligned_112_fullface_dir: "data/processed/aligned_112_fullface"
+
+  # High-resolution full-face representation.
+  aligned_448_fullface_dir: "data/processed/aligned_448_fullface"
+
+  report_json: "reports/qc/qc_summary.json"
+
+detector:
+  name: "mtcnn"
+
+  # Detection confidence required before accepting a face.
+  min_detection_confidence: 0.90
+
+  min_face_size: 40
+
+  thresholds:
+    - 0.6
+    - 0.7
+    - 0.7
+
+  factor: 0.709
+
+alignment:
+  # Standard input expected by pretrained ArcFace models.
+  arcface_size: 112
+
+  # High-resolution full-face image.
+  fullface_size: 448
+
+  # Smaller than 1.0 makes the face occupy less of the
+  # output canvas, retaining more forehead, jaw and chin.
+  fullface_scale: 0.80
+
+  # Negative value moves the landmark geometry upward,
+  # creating additional space underneath the mouth for
+  # the chin and jawline.
+  fullface_vertical_shift: -0.04
+
+quality:
+  calculate_blur: true
+  calculate_brightness: true
+
+processing:
+  # CUDA when available; otherwise CPU.
+  device: "auto"
+
+  # Continue from an existing QC CSV when possible.
+  resume: true
+
+  # Save QC metadata every N newly processed images.
+  checkpoint_every: 25
+
+  # Keep this small while validating the alignment.
+  limit: null
+
+  # Lossless output.
+  image_format: "png"
+
+  # Low PNG compression for faster writing.
+  png_compression: 3
+
+visualization:
+  face_landmarker_model: "models/mediapipe/face_landmarker.task"
+
+  # MTCNN threshold for visualization only.
+  mtcnn_min_confidence: 0.85
+
+  # MediaPipe Face Landmarker.
+  mediapipe_detection_confidence: 0.35
+  mediapipe_presence_confidence: 0.35
+
+  # Used only when visualizing very large original images.
+  max_detection_dimension: 2000
