@@ -1,0 +1,7 @@
+partition,images,subjects,families
+development,19068,349,182
+final_test,4715,86,45
+fold_1,4819,88,46
+fold_2,4824,88,46
+fold_3,4716,86,45
+fold_4,4709,87,45

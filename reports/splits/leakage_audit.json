@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "development_final_test": {
+    "family_overlap_count": 0,
+    "family_overlap": [],
+    "subject_overlap_count": 0,
+    "subject_overlap": []
+  },
+  "development_folds": {
+    "family_overlaps": {
+      "fold_1_vs_fold_2": [],
+      "fold_1_vs_fold_3": [],
+      "fold_1_vs_fold_4": [],
+      "fold_2_vs_fold_3": [],
+      "fold_2_vs_fold_4": [],
+      "fold_3_vs_fold_4": []
+    },
+    "subject_overlaps": {
+      "fold_1_vs_fold_2": [],
+      "fold_1_vs_fold_3": [],
+      "fold_1_vs_fold_4": [],
+      "fold_2_vs_fold_3": [],
+      "fold_2_vs_fold_4": [],
+      "fold_3_vs_fold_4": []
+    },
+    "fold_rows": 19068,
+    "development_rows": 19068,
+    "all_development_families_present": true,
+    "all_development_subjects_present": true
+  },
+  "assignment": {
+    "total_usable_rows": 23783,
+    "assigned_rows": 23783,
+    "all_usable_rows_assigned": true
+  }
+}

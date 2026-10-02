@@ -1,0 +1,41 @@
+input:
+  metadata_csv: "data/metadata/nd_twins_metadata_qc_v1.csv"
+
+output:
+  split_dir: "data/splits"
+  report_dir: "reports/splits"
+
+columns:
+  image_id: "image_id"
+  subject_id: "subject_id"
+  family_id: "family_group_id"
+  usable: "usable"
+
+split:
+  seed: 42
+
+  development_ratio: 0.80
+  final_test_ratio: 0.20
+
+  number_of_folds: 4
+
+  optimization_restarts: 250
+  local_search_iterations: 5000
+
+balance:
+  subject_weight: 3.0
+  image_weight: 3.0
+  condition_weight: 0.50
+
+  condition_columns:
+    - yaw
+    - expression_group
+    - illumination_group
+    - glasses_normalized
+    - weather
+
+validation:
+  require_all_usable_images_assigned: true
+  require_no_family_overlap: true
+  require_no_subject_overlap: true
+  require_unique_image_ids: true

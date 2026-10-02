@@ -1,0 +1,123 @@
+{
+  "input": {
+    "metadata_csv": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\metadata\\nd_twins_metadata_qc_v1.csv",
+    "metadata_sha256": "9c80961c323d9f9901ed5e54f776d2719468af614525ad0dde0c6b097f72e9f9"
+  },
+  "seed": 42,
+  "configuration": {
+    "development_ratio": 0.8,
+    "final_test_ratio": 0.2,
+    "number_of_folds": 4,
+    "optimization_restarts": 250,
+    "local_search_iterations": 5000,
+    "subject_weight": 3.0,
+    "image_weight": 3.0,
+    "condition_weight": 0.5,
+    "condition_columns": [
+      "yaw",
+      "expression_group",
+      "illumination_group",
+      "glasses_normalized",
+      "weather"
+    ]
+  },
+  "source": {
+    "usable_images": 23783,
+    "subjects": 435,
+    "families": 227
+  },
+  "outer_split": {
+    "balance_score": 2.5559603738864244e-05,
+    "family_quotas": [
+      182,
+      45
+    ],
+    "development": {
+      "images": 19068,
+      "subjects": 349,
+      "families": 182
+    },
+    "final_test": {
+      "images": 4715,
+      "subjects": 86,
+      "families": 45
+    }
+  },
+  "folds": {
+    "balance_score": 0.0005407277701728004,
+    "family_quotas": [
+      46,
+      46,
+      45,
+      45
+    ],
+    "fold_1": {
+      "images": 4819,
+      "subjects": 88,
+      "families": 46
+    },
+    "fold_2": {
+      "images": 4824,
+      "subjects": 88,
+      "families": 46
+    },
+    "fold_3": {
+      "images": 4716,
+      "subjects": 86,
+      "families": 45
+    },
+    "fold_4": {
+      "images": 4709,
+      "subjects": 87,
+      "families": 45
+    }
+  },
+  "leakage_audit": {
+    "status": "PASS",
+    "development_final_test": {
+      "family_overlap_count": 0,
+      "family_overlap": [],
+      "subject_overlap_count": 0,
+      "subject_overlap": []
+    },
+    "development_folds": {
+      "family_overlaps": {
+        "fold_1_vs_fold_2": [],
+        "fold_1_vs_fold_3": [],
+        "fold_1_vs_fold_4": [],
+        "fold_2_vs_fold_3": [],
+        "fold_2_vs_fold_4": [],
+        "fold_3_vs_fold_4": []
+      },
+      "subject_overlaps": {
+        "fold_1_vs_fold_2": [],
+        "fold_1_vs_fold_3": [],
+        "fold_1_vs_fold_4": [],
+        "fold_2_vs_fold_3": [],
+        "fold_2_vs_fold_4": [],
+        "fold_3_vs_fold_4": []
+      },
+      "fold_rows": 19068,
+      "development_rows": 19068,
+      "all_development_families_present": true,
+      "all_development_subjects_present": true
+    },
+    "assignment": {
+      "total_usable_rows": 23783,
+      "assigned_rows": 23783,
+      "all_usable_rows_assigned": true
+    }
+  },
+  "outputs": {
+    "development": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\development.csv",
+    "final_test": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\final_test.csv",
+    "family_assignments": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\family_assignments.csv",
+    "usable_with_assignments": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\usable_with_split_assignments.csv",
+    "folds": {
+      "1": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\folds\\fold_1.csv",
+      "2": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\folds\\fold_2.csv",
+      "3": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\folds\\fold_3.csv",
+      "4": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\folds\\fold_4.csv"
+    }
+  }
+}
