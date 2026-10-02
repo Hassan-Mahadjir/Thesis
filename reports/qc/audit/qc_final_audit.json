@@ -1,0 +1,21 @@
+{
+  "total_images": 24050,
+  "processed": 24050,
+  "readable": 24040,
+  "unreadable": 10,
+  "face_detected": 23783,
+  "no_face_detected": 257,
+  "alignment_success": 23783,
+  "multiple_faces": 966,
+  "usable": 23783,
+  "unusable": 267,
+  "exclusion_reasons": {
+    "no_face_detected": 257,
+    "unreadable_image": 10
+  },
+  "failure_audit": {
+    "unreadable_images": 10,
+    "no_face_images": 257,
+    "multiple_face_sample_size": 966
+  }
+}

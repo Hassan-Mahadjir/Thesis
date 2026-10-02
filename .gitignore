@@ -53,6 +53,7 @@ data/processed/
 
 # Generated reports
 reports/figures/
+reports/qc/audit/multiple_face_visualizations
 
 # Model checkpoints / trained weights
 checkpoints/

@@ -1,0 +1,29 @@
+freeze:
+  version: "v1"
+
+input:
+  metadata_csv: "data/metadata/nd_twins_metadata_qc.csv"
+  qc_config: "configs/qc.yaml"
+  audit_json: "reports/qc/audit/qc_final_audit.json"
+
+output:
+  metadata_csv: "data/metadata/nd_twins_metadata_qc_v1.csv"
+  qc_config_copy: "reports/qc/freeze/v1/qc_v1.yaml"
+  freeze_report_json: "reports/qc/freeze/v1/qc_freeze_v1.json"
+
+aligned_outputs:
+  aligned_112_arcface: "data/processed/aligned_112_arcface"
+  aligned_112_fullface: "data/processed/aligned_112_fullface"
+  aligned_448_fullface: "data/processed/aligned_448_fullface"
+
+validation:
+  expected_counts:
+    total_images: 24050
+    readable: 24040
+    unreadable: 10
+    face_detected: 23783
+    no_face_detected: 257
+    alignment_success: 23783
+    multiple_faces: 966
+    usable: 23783
+    unusable: 267

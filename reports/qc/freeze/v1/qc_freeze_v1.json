@@ -1,0 +1,56 @@
+{
+  "freeze_version": "v1",
+  "created_at_utc": "2026-10-02T08:46:37.286643+00:00",
+  "status": "frozen",
+  "dataset": "ND-TWINS-2009-2010",
+  "counts": {
+    "total_images": 24050,
+    "readable": 24040,
+    "unreadable": 10,
+    "face_detected": 23783,
+    "no_face_detected": 257,
+    "landmarks_detected": 23783,
+    "alignment_success": 23783,
+    "multiple_faces": 966,
+    "usable": 23783,
+    "unusable": 267,
+    "retried_images": 714,
+    "exclusion_reasons": {
+      "no_face_detected": 257,
+      "unreadable_image": 10
+    }
+  },
+  "aligned_output_counts": {
+    "aligned_112_arcface": 23783,
+    "aligned_112_fullface": 23783,
+    "aligned_448_fullface": 23783
+  },
+  "audit": {
+    "multiple_face_visual_check": true,
+    "multiple_face_primary_selection": "confirmed_correct",
+    "audit_summary": "C:\\Users\\Hmmah\\Desktop\\Thesis\\reports\\qc\\audit\\qc_final_audit.json"
+  },
+  "files": {
+    "source_qc_metadata": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\metadata\\nd_twins_metadata_qc.csv",
+    "frozen_qc_metadata": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\metadata\\nd_twins_metadata_qc_v1.csv",
+    "frozen_qc_config": "C:\\Users\\Hmmah\\Desktop\\Thesis\\reports\\qc\\freeze\\v1\\qc_v1.yaml",
+    "audit_summary": "C:\\Users\\Hmmah\\Desktop\\Thesis\\reports\\qc\\audit\\qc_final_audit.json"
+  },
+  "aligned_outputs": {
+    "aligned_112_arcface": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\processed\\aligned_112_arcface",
+    "aligned_112_fullface": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\processed\\aligned_112_fullface",
+    "aligned_448_fullface": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\processed\\aligned_448_fullface"
+  },
+  "hashes": {
+    "frozen_metadata_sha256": "9c80961c323d9f9901ed5e54f776d2719468af614525ad0dde0c6b097f72e9f9",
+    "source_metadata_sha256": "9c80961c323d9f9901ed5e54f776d2719468af614525ad0dde0c6b097f72e9f9",
+    "qc_config_sha256": "170d68feb98dfe306569938697b854dcf49ef51d75993b179be24b3077a4dee2",
+    "audit_summary_sha256": "3879ed1205dda5a3870bcc9e047bdf7b1ba21efcf01164953b269c2c0cb36ce7"
+  },
+  "git_commit": "bb1f15047782d11ec47c0d6163a94ae0599493c4",
+  "notes": [
+    "QC v1 is immutable and must not be modified after freezing.",
+    "Future preprocessing changes must use a new QC version.",
+    "Full-profile preprocessing may be introduced later as a separate protocol."
+  ]
+}

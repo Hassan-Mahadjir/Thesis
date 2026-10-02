@@ -1,0 +1,11 @@
+input:
+  metadata_csv: "data/metadata/nd_twins_metadata_qc.csv"
+  qc_config: "configs/qc.yaml"
+
+output:
+  report_dir: "reports/qc/audit"
+
+multiple_faces:
+  sample_size: null
+  random_seed: 42
+  save_visualizations: true
