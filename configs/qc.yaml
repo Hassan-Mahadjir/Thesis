@@ -65,10 +65,27 @@ processing:
   limit: null
 
   # Lossless output.
-  image_format: "png"
+  image_format:
+    "png"
+
+    # Re-check failed images.
+  retry_failed: true
+
+  # 1 = original run
+  # 2 = one additional verification attempt
+  max_attempts: 2
 
   # Low PNG compression for faster writing.
   png_compression: 3
+
+  # Retry failed images with these exclusion reasons.
+  retry_exclusion_reasons:
+    - unreadable_image
+    - face_detection_error
+    - no_face_detected
+    - invalid_landmarks
+    - alignment_failed
+    - aligned_image_save_failed
 
 visualization:
   face_landmarker_model: "models/mediapipe/face_landmarker.task"

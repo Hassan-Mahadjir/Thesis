@@ -52,7 +52,6 @@ data/metadata/nd_twins_metadata_qc.csv
 data/processed/
 
 # Generated reports
-reports/qc/
 reports/figures/
 
 # Model checkpoints / trained weights
@@ -67,7 +66,7 @@ wandb/
 *.onnx
 
 # Large external model assets
-# models/mediapipe/*.task
+models/mediapipe/*.task
 
 # Temporary files
 *.tmp

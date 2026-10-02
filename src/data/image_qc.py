@@ -23,6 +23,7 @@ from tqdm import tqdm
 
 QC_COLUMNS = [
     "qc_processed",
+    "qc_attempts",
 
     "image_readable",
     "image_width",
@@ -69,6 +70,8 @@ QC_COLUMNS = [
 
     "usable",
     "exclusion_reason",
+    "qc_error_type",
+    "qc_error_message",
 ]
 
 
@@ -83,6 +86,7 @@ QC_BOOLEAN_COLUMNS = [
 
 
 QC_INTEGER_COLUMNS = [
+    "qc_attempts",
     "image_width",
     "image_height",
 
@@ -128,6 +132,8 @@ QC_STRING_COLUMNS = [
     "aligned_448_fullface_path",
 
     "exclusion_reason",
+    "qc_error_type",
+    "qc_error_message",
 ]
 
 
@@ -1173,6 +1179,14 @@ def process_image(
             "exclusion_reason"
         ] = "unreadable_image"
 
+        result[
+            "qc_error_type"
+        ] = type(error).__name__
+
+        result[
+            "qc_error_message"
+        ] = str(error)[:500]
+
         print(
             f"\n[READ ERROR]"
             f"\nImage: {image_path}"
@@ -1232,6 +1246,14 @@ def process_image(
         result[
             "exclusion_reason"
         ] = "face_detection_error"
+
+        result[
+            "qc_error_type"
+        ] = type(error).__name__
+
+        result[
+            "qc_error_message"
+        ] = str(error)[:500]
 
         print(
             f"\n[DETECTION ERROR]"
@@ -1581,6 +1603,14 @@ def process_image(
             "exclusion_reason"
         ] = "alignment_failed"
 
+        result[
+            "qc_error_type"
+        ] = type(error).__name__
+
+        result[
+            "qc_error_message"
+        ] = str(error)[:500]
+
         print(
             f"\n[ALIGNMENT ERROR]"
             f"\nImage: {image_path}"
@@ -1677,6 +1707,14 @@ def process_image(
         result[
             "exclusion_reason"
         ] = "aligned_image_save_failed"
+
+        result[
+            "qc_error_type"
+        ] = type(error).__name__
+
+        result[
+            "qc_error_message"
+        ] = str(error)[:500]
 
         print(
             f"\n[SAVE ERROR]"
@@ -1917,6 +1955,13 @@ def build_summary(
         errors="coerce",
     )
 
+    attempts = pd.to_numeric(
+        df[
+            "qc_attempts"
+        ],
+        errors="coerce",
+    )
+
     reasons = (
         df.loc[
             processed
@@ -1950,6 +1995,13 @@ def build_summary(
             int(
                 len(df)
                 - processed.sum()
+            ),
+
+        "retried_images":
+            int(
+                (
+                    attempts > 1
+                ).sum()
             ),
 
         "readable":
@@ -2270,6 +2322,36 @@ def prepare_dataframe(
         df
     )
 
+    # Existing checkpoints created before qc_attempts was
+    # introduced are interpreted as having completed one attempt.
+    processed_mask = (
+        df[
+            "qc_processed"
+        ]
+        .fillna(
+            False
+        )
+    )
+
+    missing_attempts = (
+        df[
+            "qc_attempts"
+        ]
+        .isna()
+    )
+
+    df.loc[
+        missing_attempts
+        & processed_mask,
+        "qc_attempts",
+    ] = 1
+
+    df.loc[
+        missing_attempts
+        & ~processed_mask,
+        "qc_attempts",
+    ] = 0
+
     if not (
         resume
         and output_path.exists()
@@ -2291,17 +2373,70 @@ def prepare_dataframe(
 
 def row_is_complete(
     row,
+    retry_failed: bool,
+    max_attempts: int,
+    retry_reasons: set[str],
 ) -> bool:
+    """
+    Determine whether a row should be skipped.
+
+    Successful images are skipped if all generated outputs still
+    exist. Failed images may be retried until max_attempts is reached.
+    """
     if not as_bool(
         row.qc_processed
     ):
         return False
 
-    # Controlled failures are considered complete.
+    attempts = getattr(
+        row,
+        "qc_attempts",
+        0,
+    )
+
+    try:
+        if pd.isna(
+            attempts
+        ):
+            attempts = 0
+    except (TypeError, ValueError):
+        pass
+
+    attempts = int(
+        attempts
+    )
+
     if not as_bool(
         row.alignment_success
     ):
-        return True
+        if not retry_failed:
+            return True
+
+        if attempts >= max_attempts:
+            return True
+
+        reason = getattr(
+            row,
+            "exclusion_reason",
+            None,
+        )
+
+        if pd.isna(
+            reason
+        ):
+            reason = ""
+        else:
+            reason = str(
+                reason
+            )
+
+        if (
+            retry_reasons
+            and reason not in retry_reasons
+        ):
+            return True
+
+        return False
 
     path_arcface = resolve_stored_path(
         row.aligned_112_arcface_path
@@ -2337,11 +2472,40 @@ def clear_qc_row(
     df: pd.DataFrame,
     index,
 ) -> None:
+    """
+    Clear QC results before reprocessing while preserving the
+    previous attempt count.
+    """
+    previous_attempts = df.at[
+        index,
+        "qc_attempts",
+    ]
+
+    try:
+        if pd.isna(
+            previous_attempts
+        ):
+            previous_attempts = 0
+    except (TypeError, ValueError):
+        pass
+
+    previous_attempts = int(
+        previous_attempts
+    )
+
     for column in QC_COLUMNS:
+        if column == "qc_attempts":
+            continue
+
         df.at[
             index,
             column,
         ] = pd.NA
+
+    df.at[
+        index,
+        "qc_attempts",
+    ] = previous_attempts
 
     df.at[
         index,
@@ -2647,6 +2811,43 @@ def main(
                 "or null."
             )
 
+    retry_failed = bool(
+        config[
+            "processing"
+        ].get(
+            "retry_failed",
+            False,
+        )
+    )
+
+    max_attempts = int(
+        config[
+            "processing"
+        ].get(
+            "max_attempts",
+            1,
+        )
+    )
+
+    if max_attempts < 1:
+        raise ValueError(
+            "processing.max_attempts must be >= 1."
+        )
+
+    retry_reasons = set(
+        config[
+            "processing"
+        ].get(
+            "retry_exclusion_reasons",
+            [],
+        )
+    )
+
+    print(
+        f"Retry failed images: "
+        f"{retry_failed}"
+    )
+
     # ========================================================
     # DETERMINE REMAINING WORK
     # ========================================================
@@ -2654,7 +2855,10 @@ def main(
     complete_mask = np.array(
         [
             row_is_complete(
-                row
+                row=row,
+                retry_failed=retry_failed,
+                max_attempts=max_attempts,
+                retry_reasons=retry_reasons,
             )
             for row
             in df.itertuples(
@@ -2726,6 +2930,23 @@ def main(
             desc="QC",
             unit="image",
         ):
+            previous_attempts = df.at[
+                index,
+                "qc_attempts",
+            ]
+
+            try:
+                if pd.isna(
+                    previous_attempts
+                ):
+                    previous_attempts = 0
+            except (TypeError, ValueError):
+                pass
+
+            attempt_number = int(
+                previous_attempts
+            ) + 1
+
             row = df.loc[
                 index
             ]
@@ -2734,6 +2955,11 @@ def main(
                 df,
                 index,
             )
+
+            df.at[
+                index,
+                "qc_attempts",
+            ] = attempt_number
 
             result = process_image(
                 row=row,
@@ -2758,6 +2984,13 @@ def main(
                     index,
                     column,
                 ] = value
+
+            # empty_result() includes qc_attempts as missing, so
+            # restore the attempt number after copying the result.
+            df.at[
+                index,
+                "qc_attempts",
+            ] = attempt_number
 
             processed_this_run += 1
 
@@ -2853,6 +3086,11 @@ def main(
     print(
         f"Remaining:          "
         f"{summary['remaining']:,}"
+    )
+
+    print(
+        f"Retried images:     "
+        f"{summary['retried_images']:,}"
     )
 
     print(
