@@ -1,0 +1,120 @@
+input:
+  assignments_csv: "data/splits/usable_with_split_assignments.csv"
+
+output:
+  protocol_dir: "data/protocols"
+  report_dir: "reports/protocols"
+
+columns:
+  image_id: "image_id"
+  subject_id: "subject_id"
+  family_id: "family_group_id"
+  split: "split"
+  fold: "fold"
+  usable: "usable"
+  yaw: "yaw"
+
+protocols:
+  # ----------------------------------------------------------
+  # P0
+  # Cleanest / easiest baseline.
+  #
+  # Frontal + controlled illumination + neutral expression.
+  # ----------------------------------------------------------
+  p0_controlled_neutral_frontal:
+    description: >
+      Frontal controlled neutral images. Used as the clean
+      baseline protocol.
+    type: "boolean_any"
+    columns:
+      - "controlled_neutral_frontal"
+
+  # ----------------------------------------------------------
+  # P1
+  # Expression robustness.
+  #
+  # Controlled neutral + controlled smiling images.
+  # Illumination remains controlled while expression varies.
+  # ----------------------------------------------------------
+  p1_controlled_expression:
+    description: >
+      Controlled frontal images containing neutral and smiling
+      expressions. Used to evaluate expression variation.
+    type: "boolean_any"
+    columns:
+      - "controlled_neutral_frontal"
+      - "controlled_smiling_frontal"
+
+  # ----------------------------------------------------------
+  # P2
+  # Illumination robustness.
+  #
+  # Includes controlled neutral frontal and uncontrolled
+  # frontal images.
+  # ----------------------------------------------------------
+  p2_frontal_illumination:
+    description: >
+      Frontal images spanning controlled and uncontrolled
+      illumination conditions.
+    type: "boolean_any"
+    columns:
+      - "controlled_neutral_frontal"
+      - "uncontrolled_frontal"
+
+  # ----------------------------------------------------------
+  # P3
+  # All frontal images.
+  # ----------------------------------------------------------
+  p3_frontal_all:
+    description: >
+      All usable frontal images regardless of expression,
+      illumination, glasses, or other frontal conditions.
+    type: "boolean_any"
+    columns:
+      - "is_frontal"
+
+  # ----------------------------------------------------------
+  # P4
+  # Moderate pose.
+  # ----------------------------------------------------------
+  p4_moderate_pose:
+    description: >
+      Usable frontal and moderate-pose images at -45, 0,
+      and +45 degrees.
+    type: "yaw_values"
+    values:
+      - -45
+      - 0
+      - 45
+
+  # ----------------------------------------------------------
+  # P5
+  # Full profile.
+  #
+  # Contains only profile images that passed QC v1.
+  # ----------------------------------------------------------
+  p5_profile:
+    description: >
+      Usable full-profile images at -90 and +90 degrees.
+      Images that failed QC remain excluded.
+    type: "yaw_values"
+    values:
+      - -90
+      - 90
+
+  # ----------------------------------------------------------
+  # P6
+  # Everything supported by QC v1.
+  # ----------------------------------------------------------
+  p6_all_usable:
+    description: >
+      All images marked usable in QC v1.
+    type: "all"
+
+report:
+  condition_columns:
+    - "yaw"
+    - "expression_group"
+    - "illumination_group"
+    - "glasses_normalized"
+    - "weather"

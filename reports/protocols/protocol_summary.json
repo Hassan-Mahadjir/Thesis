@@ -1,0 +1,405 @@
+{
+  "input": {
+    "assignments_csv": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\splits\\usable_with_split_assignments.csv",
+    "assignments_sha256": "03909922895b6b894b13aefae691030e307888f372da5f8c3c12301db361ebeb"
+  },
+  "source": {
+    "images": 23783,
+    "subjects": 435,
+    "families": 227
+  },
+  "protocols": {
+    "p0_controlled_neutral_frontal": {
+      "description": "Frontal controlled neutral images. Used as the clean baseline protocol.\n",
+      "manifest": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\protocols\\p0_controlled_neutral_frontal.csv",
+      "manifest_sha256": "d658ae0fb8813b0eb76d5c1c5c77ea0d0a78f3647322fcc8d6ee855b25299b84",
+      "all": {
+        "images": 976,
+        "subjects": 348,
+        "families": 174,
+        "subjects_with_2plus_images": 345
+      },
+      "development": {
+        "images": 779,
+        "subjects": 278,
+        "families": 139,
+        "subjects_with_2plus_images": 276
+      },
+      "final_test": {
+        "images": 197,
+        "subjects": 70,
+        "families": 35,
+        "subjects_with_2plus_images": 69
+      },
+      "folds": {
+        "fold_1": {
+          "images": 185,
+          "subjects": 68,
+          "families": 34,
+          "subjects_with_2plus_images": 67
+        },
+        "fold_2": {
+          "images": 209,
+          "subjects": 72,
+          "families": 36,
+          "subjects_with_2plus_images": 71
+        },
+        "fold_3": {
+          "images": 184,
+          "subjects": 64,
+          "families": 32,
+          "subjects_with_2plus_images": 64
+        },
+        "fold_4": {
+          "images": 201,
+          "subjects": 74,
+          "families": 37,
+          "subjects_with_2plus_images": 74
+        }
+      },
+      "leakage_audit": {
+        "status": "PASS",
+        "family_overlap_count": 0,
+        "subject_overlap_count": 0,
+        "family_overlap": [],
+        "subject_overlap": []
+      }
+    },
+    "p1_controlled_expression": {
+      "description": "Controlled frontal images containing neutral and smiling expressions. Used to evaluate expression variation.\n",
+      "manifest": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\protocols\\p1_controlled_expression.csv",
+      "manifest_sha256": "62c2deb55b8f78da91d7eee7bd65f5a9a55cdc448fa95e3632facd76c0b76905",
+      "all": {
+        "images": 1952,
+        "subjects": 348,
+        "families": 174,
+        "subjects_with_2plus_images": 348
+      },
+      "development": {
+        "images": 1559,
+        "subjects": 278,
+        "families": 139,
+        "subjects_with_2plus_images": 278
+      },
+      "final_test": {
+        "images": 393,
+        "subjects": 70,
+        "families": 35,
+        "subjects_with_2plus_images": 70
+      },
+      "folds": {
+        "fold_1": {
+          "images": 370,
+          "subjects": 68,
+          "families": 34,
+          "subjects_with_2plus_images": 68
+        },
+        "fold_2": {
+          "images": 419,
+          "subjects": 72,
+          "families": 36,
+          "subjects_with_2plus_images": 72
+        },
+        "fold_3": {
+          "images": 368,
+          "subjects": 64,
+          "families": 32,
+          "subjects_with_2plus_images": 64
+        },
+        "fold_4": {
+          "images": 402,
+          "subjects": 74,
+          "families": 37,
+          "subjects_with_2plus_images": 74
+        }
+      },
+      "leakage_audit": {
+        "status": "PASS",
+        "family_overlap_count": 0,
+        "subject_overlap_count": 0,
+        "family_overlap": [],
+        "subject_overlap": []
+      }
+    },
+    "p2_frontal_illumination": {
+      "description": "Frontal images spanning controlled and uncontrolled illumination conditions.\n",
+      "manifest": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\protocols\\p2_frontal_illumination.csv",
+      "manifest_sha256": "98ab1da32be5eaa0f222512e51efe16c69020fbb3da25e199d9ed620162bc9c5",
+      "all": {
+        "images": 1652,
+        "subjects": 348,
+        "families": 174,
+        "subjects_with_2plus_images": 345
+      },
+      "development": {
+        "images": 1311,
+        "subjects": 278,
+        "families": 139,
+        "subjects_with_2plus_images": 276
+      },
+      "final_test": {
+        "images": 341,
+        "subjects": 70,
+        "families": 35,
+        "subjects_with_2plus_images": 69
+      },
+      "folds": {
+        "fold_1": {
+          "images": 291,
+          "subjects": 68,
+          "families": 34,
+          "subjects_with_2plus_images": 67
+        },
+        "fold_2": {
+          "images": 360,
+          "subjects": 72,
+          "families": 36,
+          "subjects_with_2plus_images": 71
+        },
+        "fold_3": {
+          "images": 307,
+          "subjects": 64,
+          "families": 32,
+          "subjects_with_2plus_images": 64
+        },
+        "fold_4": {
+          "images": 353,
+          "subjects": 74,
+          "families": 37,
+          "subjects_with_2plus_images": 74
+        }
+      },
+      "leakage_audit": {
+        "status": "PASS",
+        "family_overlap_count": 0,
+        "subject_overlap_count": 0,
+        "family_overlap": [],
+        "subject_overlap": []
+      }
+    },
+    "p3_frontal_all": {
+      "description": "All usable frontal images regardless of expression, illumination, glasses, or other frontal conditions.\n",
+      "manifest": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\protocols\\p3_frontal_all.csv",
+      "manifest_sha256": "575f5ed28841050414679a111ce48c159c49724f5d202257297b9479443dbe8f",
+      "all": {
+        "images": 7422,
+        "subjects": 435,
+        "families": 227,
+        "subjects_with_2plus_images": 435
+      },
+      "development": {
+        "images": 5951,
+        "subjects": 349,
+        "families": 182,
+        "subjects_with_2plus_images": 349
+      },
+      "final_test": {
+        "images": 1471,
+        "subjects": 86,
+        "families": 45,
+        "subjects_with_2plus_images": 86
+      },
+      "folds": {
+        "fold_1": {
+          "images": 1509,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 88
+        },
+        "fold_2": {
+          "images": 1505,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 88
+        },
+        "fold_3": {
+          "images": 1469,
+          "subjects": 86,
+          "families": 45,
+          "subjects_with_2plus_images": 86
+        },
+        "fold_4": {
+          "images": 1468,
+          "subjects": 87,
+          "families": 45,
+          "subjects_with_2plus_images": 87
+        }
+      },
+      "leakage_audit": {
+        "status": "PASS",
+        "family_overlap_count": 0,
+        "subject_overlap_count": 0,
+        "family_overlap": [],
+        "subject_overlap": []
+      }
+    },
+    "p4_moderate_pose": {
+      "description": "Usable frontal and moderate-pose images at -45, 0, and +45 degrees.\n",
+      "manifest": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\protocols\\p4_moderate_pose.csv",
+      "manifest_sha256": "53a295792fe424356f0fb1f04c9060e9aa12a7016a68097b6bdfbf7420dfd661",
+      "all": {
+        "images": 15576,
+        "subjects": 435,
+        "families": 227,
+        "subjects_with_2plus_images": 435
+      },
+      "development": {
+        "images": 12488,
+        "subjects": 349,
+        "families": 182,
+        "subjects_with_2plus_images": 349
+      },
+      "final_test": {
+        "images": 3088,
+        "subjects": 86,
+        "families": 45,
+        "subjects_with_2plus_images": 86
+      },
+      "folds": {
+        "fold_1": {
+          "images": 3158,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 88
+        },
+        "fold_2": {
+          "images": 3157,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 88
+        },
+        "fold_3": {
+          "images": 3092,
+          "subjects": 86,
+          "families": 45,
+          "subjects_with_2plus_images": 86
+        },
+        "fold_4": {
+          "images": 3081,
+          "subjects": 87,
+          "families": 45,
+          "subjects_with_2plus_images": 87
+        }
+      },
+      "leakage_audit": {
+        "status": "PASS",
+        "family_overlap_count": 0,
+        "subject_overlap_count": 0,
+        "family_overlap": [],
+        "subject_overlap": []
+      }
+    },
+    "p5_profile": {
+      "description": "Usable full-profile images at -90 and +90 degrees. Images that failed QC remain excluded.\n",
+      "manifest": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\protocols\\p5_profile.csv",
+      "manifest_sha256": "ba4acd96ff5b727599a9e9e499f919439f53859bd767af59e6199548e9795e4d",
+      "all": {
+        "images": 8207,
+        "subjects": 435,
+        "families": 227,
+        "subjects_with_2plus_images": 433
+      },
+      "development": {
+        "images": 6580,
+        "subjects": 349,
+        "families": 182,
+        "subjects_with_2plus_images": 348
+      },
+      "final_test": {
+        "images": 1627,
+        "subjects": 86,
+        "families": 45,
+        "subjects_with_2plus_images": 85
+      },
+      "folds": {
+        "fold_1": {
+          "images": 1661,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 88
+        },
+        "fold_2": {
+          "images": 1667,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 87
+        },
+        "fold_3": {
+          "images": 1624,
+          "subjects": 86,
+          "families": 45,
+          "subjects_with_2plus_images": 86
+        },
+        "fold_4": {
+          "images": 1628,
+          "subjects": 87,
+          "families": 45,
+          "subjects_with_2plus_images": 87
+        }
+      },
+      "leakage_audit": {
+        "status": "PASS",
+        "family_overlap_count": 0,
+        "subject_overlap_count": 0,
+        "family_overlap": [],
+        "subject_overlap": []
+      }
+    },
+    "p6_all_usable": {
+      "description": "All images marked usable in QC v1.\n",
+      "manifest": "C:\\Users\\Hmmah\\Desktop\\Thesis\\data\\protocols\\p6_all_usable.csv",
+      "manifest_sha256": "9b72c6bbffa856b8cb33463b76e68b45bd3f0861a61a160ad5e08eb1f3d65cdc",
+      "all": {
+        "images": 23783,
+        "subjects": 435,
+        "families": 227,
+        "subjects_with_2plus_images": 435
+      },
+      "development": {
+        "images": 19068,
+        "subjects": 349,
+        "families": 182,
+        "subjects_with_2plus_images": 349
+      },
+      "final_test": {
+        "images": 4715,
+        "subjects": 86,
+        "families": 45,
+        "subjects_with_2plus_images": 86
+      },
+      "folds": {
+        "fold_1": {
+          "images": 4819,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 88
+        },
+        "fold_2": {
+          "images": 4824,
+          "subjects": 88,
+          "families": 46,
+          "subjects_with_2plus_images": 88
+        },
+        "fold_3": {
+          "images": 4716,
+          "subjects": 86,
+          "families": 45,
+          "subjects_with_2plus_images": 86
+        },
+        "fold_4": {
+          "images": 4709,
+          "subjects": 87,
+          "families": 45,
+          "subjects_with_2plus_images": 87
+        }
+      },
+      "leakage_audit": {
+        "status": "PASS",
+        "family_overlap_count": 0,
+        "subject_overlap_count": 0,
+        "family_overlap": [],
+        "subject_overlap": []
+      }
+    }
+  }
+}
