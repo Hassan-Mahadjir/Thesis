@@ -1,0 +1,8 @@
+{
+  "variant": "global_pair",
+  "mode": "tuning",
+  "epochs_completed": 7,
+  "best_epoch": 2,
+  "best_validation_objective": 0.21862284440929053,
+  "checkpoint": "F:\\Thesis\\checkpoints\\global_periocular\\ablation\\global_pair\\best.pt"
+}

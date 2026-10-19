@@ -1,0 +1,51 @@
+{
+  "p0_controlled_neutral_frontal": {
+    "threshold": 0.9059395790100098,
+    "oof_eer": 0.19337253338648597,
+    "oof_auc": 0.8875544577009598,
+    "genuine_pairs": 1015,
+    "cotwin_pairs": 1384
+  },
+  "p1_controlled_expression": {
+    "threshold": 0.9042482376098633,
+    "oof_eer": 0.17545430272188978,
+    "oof_auc": 0.905127581942639,
+    "genuine_pairs": 3876,
+    "cotwin_pairs": 4468
+  },
+  "p2_frontal_illumination": {
+    "threshold": 0.8584160208702087,
+    "oof_eer": 0.24050215243061357,
+    "oof_auc": 0.847932094602742,
+    "genuine_pairs": 3403,
+    "cotwin_pairs": 3948
+  },
+  "p3_frontal_all": {
+    "threshold": 0.8037902116775513,
+    "oof_eer": 0.21608065652646463,
+    "oof_auc": 0.8659382540436674,
+    "genuine_pairs": 11344,
+    "cotwin_pairs": 9764
+  },
+  "p4_moderate_pose": {
+    "threshold": 0.33125734329223633,
+    "oof_eer": 0.3055661982020812,
+    "oof_auc": 0.7713193172372391,
+    "genuine_pairs": 17440,
+    "cotwin_pairs": 14900
+  },
+  "p5_profile": {
+    "threshold": 0.1485997438430786,
+    "oof_eer": 0.40800764703229175,
+    "oof_auc": 0.6410540475901082,
+    "genuine_pairs": 15156,
+    "cotwin_pairs": 13113
+  },
+  "p6_all_usable": {
+    "threshold": 0.09202536940574646,
+    "oof_eer": 0.3925215861233438,
+    "oof_auc": 0.6551619891925156,
+    "genuine_pairs": 17450,
+    "cotwin_pairs": 14900
+  }
+}

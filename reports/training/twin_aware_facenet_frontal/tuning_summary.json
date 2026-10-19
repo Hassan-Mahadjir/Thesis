@@ -1,0 +1,7 @@
+{
+  "mode": "tuning",
+  "epochs_completed": 15,
+  "best_epoch": 10,
+  "best_validation_objective": 0.1890719511492522,
+  "checkpoint": "C:\\Users\\25500560\\Desktop\\Thesis\\checkpoints\\twin_aware\\twin_aware_facenet_frontal_best.pt"
+}

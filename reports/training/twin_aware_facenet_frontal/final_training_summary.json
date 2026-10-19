@@ -1,0 +1,7 @@
+{
+  "mode": "final",
+  "epochs_completed": 10,
+  "best_epoch": null,
+  "best_validation_objective": null,
+  "checkpoint": "C:\\Users\\25500560\\Desktop\\Thesis\\checkpoints\\twin_aware\\twin_aware_facenet_frontal_final.pt"
+}

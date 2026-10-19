@@ -231,11 +231,14 @@ def main() -> None:
         classify=False,
     )
 
-    model.load_state_dict(
-        checkpoint[
-            "state_dict"
-        ]
-    )
+    # Pretrained training models retain the classifier even in embedding mode.
+    # Extraction uses only the embedding network; validate all its weights strictly.
+    state_dict = {
+        key: value
+        for key, value in checkpoint["state_dict"].items()
+        if key not in {"logits.weight", "logits.bias"}
+    }
+    model.load_state_dict(state_dict, strict=True)
 
     model = model.to(
         device

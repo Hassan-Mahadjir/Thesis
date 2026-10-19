@@ -1,0 +1,231 @@
+{
+  "feature_name": "twin_aware_facenet_frontal",
+  "protocol": "p1_controlled_expression",
+  "similarity_distributions": {
+    "development": {
+      "co_twin": {
+        "count": 4468,
+        "mean": 0.6561758209400179,
+        "std": 0.06878417097950593,
+        "median": 0.66395138,
+        "minimum": 0.28232288,
+        "maximum": 0.91553986
+      },
+      "genuine": {
+        "count": 3876,
+        "mean": 0.9430936998993809,
+        "std": 0.03030941734742566,
+        "median": 0.949083975,
+        "minimum": 0.7617471,
+        "maximum": 0.99506956
+      },
+      "unrelated": {
+        "count": 4468,
+        "mean": -0.0009310969205449867,
+        "std": 0.18678159464357358,
+        "median": -0.008927599,
+        "minimum": -0.5338683,
+        "maximum": 0.7367294
+      }
+    },
+    "final_test": {
+      "co_twin": {
+        "count": 1112,
+        "mean": 0.7739067263129497,
+        "std": 0.09507377597200305,
+        "median": 0.78745648,
+        "minimum": 0.24128564,
+        "maximum": 0.9671958
+      },
+      "genuine": {
+        "count": 958,
+        "mean": 0.904759065960334,
+        "std": 0.054837742779065474,
+        "median": 0.917273835,
+        "minimum": 0.6521691,
+        "maximum": 0.9907435
+      },
+      "unrelated": {
+        "count": 1112,
+        "mean": 0.007566144552670864,
+        "std": 0.1851703882060905,
+        "median": -0.0032935078,
+        "minimum": -0.56736344,
+        "maximum": 0.70509976
+      }
+    }
+  },
+  "tasks": {
+    "twin_verification": {
+      "development": {
+        "pairs": 8344,
+        "intrinsic": {
+          "roc_auc": 0.9998708278015065,
+          "eer": 0.0020391537852477775,
+          "eer_threshold": 0.81420076,
+          "tar_at_far": {
+            "0.01": 0.9997420020639834,
+            "0.001": 0.9847781217750258
+          }
+        },
+        "operating": {
+          "threshold": 0.81420076,
+          "accuracy": 0.9979626078619367,
+          "precision": 0.9976786174877482,
+          "recall": 0.9979360165118679,
+          "f1": 0.9978073003998452,
+          "far": 0.0020143240823634737,
+          "frr": 0.0020639834881320948,
+          "true_accept_rate": 0.9979360165118679,
+          "true_reject_rate": 0.9979856759176365,
+          "tp": 3868,
+          "tn": 4459,
+          "fp": 9,
+          "fn": 8
+        }
+      },
+      "selected_threshold": 0.81420076,
+      "final_test": {
+        "pairs": 2070,
+        "intrinsic": {
+          "roc_auc": 0.9121230155750139,
+          "eer": 0.1604117541040237,
+          "eer_threshold": 0.851519,
+          "tar_at_far": {
+            "0.01": 0.29123173277661796,
+            "0.001": 0.10751565762004175
+          }
+        },
+        "operating_at_development_threshold": {
+          "threshold": 0.81420076,
+          "accuracy": 0.7903381642512077,
+          "precision": 0.7066246056782335,
+          "recall": 0.9352818371607515,
+          "f1": 0.8050314465408805,
+          "far": 0.3345323741007194,
+          "frr": 0.06471816283924843,
+          "true_accept_rate": 0.9352818371607515,
+          "true_reject_rate": 0.6654676258992807,
+          "tp": 896,
+          "tn": 740,
+          "fp": 372,
+          "fn": 62
+        }
+      }
+    },
+    "ordinary_verification": {
+      "development": {
+        "pairs": 8344,
+        "intrinsic": {
+          "roc_auc": 1.0,
+          "eer": 0.0,
+          "eer_threshold": 0.7617471,
+          "tar_at_far": {
+            "0.01": 1.0,
+            "0.001": 1.0
+          }
+        },
+        "operating": {
+          "threshold": 0.7617471,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "far": 0.0,
+          "frr": 0.0,
+          "true_accept_rate": 1.0,
+          "true_reject_rate": 1.0,
+          "tp": 3876,
+          "tn": 4468,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "selected_threshold": 0.7617471,
+      "final_test": {
+        "pairs": 2070,
+        "intrinsic": {
+          "roc_auc": 0.9999953064688124,
+          "eer": 0.0004496402877697842,
+          "eer_threshold": 0.6521691,
+          "tar_at_far": {
+            "0.01": 1.0,
+            "0.001": 1.0
+          }
+        },
+        "operating_at_development_threshold": {
+          "threshold": 0.7617471,
+          "accuracy": 0.9888888888888889,
+          "precision": 1.0,
+          "recall": 0.975991649269311,
+          "f1": 0.9878499735868991,
+          "far": 0.0,
+          "frr": 0.024008350730688934,
+          "true_accept_rate": 0.975991649269311,
+          "true_reject_rate": 1.0,
+          "tp": 935,
+          "tn": 1112,
+          "fp": 0,
+          "fn": 23
+        }
+      }
+    },
+    "combined_verification": {
+      "development": {
+        "pairs": 7752,
+        "intrinsic": {
+          "roc_auc": 0.9999153985096292,
+          "eer": 0.0005159958720330082,
+          "eer_threshold": 0.80481416,
+          "tar_at_far": {
+            "0.01": 0.9997420020639834,
+            "0.001": 0.999484004127967
+          }
+        },
+        "operating": {
+          "threshold": 0.80481416,
+          "accuracy": 0.999484004127967,
+          "precision": 0.999484004127967,
+          "recall": 0.999484004127967,
+          "f1": 0.999484004127967,
+          "far": 0.0005159958720330237,
+          "frr": 0.0005159958720330237,
+          "true_accept_rate": 0.999484004127967,
+          "true_reject_rate": 0.999484004127967,
+          "tp": 3874,
+          "tn": 3874,
+          "fp": 2,
+          "fn": 2
+        }
+      },
+      "selected_threshold": 0.80481416,
+      "final_test": {
+        "pairs": 1916,
+        "intrinsic": {
+          "roc_auc": 0.9599210690329976,
+          "eer": 0.10699373695198332,
+          "eer_threshold": 0.8341203,
+          "tar_at_far": {
+            "0.01": 0.46242171189979125,
+            "0.001": 0.26931106471816285
+          }
+        },
+        "operating_at_development_threshold": {
+          "threshold": 0.80481416,
+          "accuracy": 0.8810020876826722,
+          "precision": 0.8367158671586716,
+          "recall": 0.9467640918580376,
+          "f1": 0.8883447600391773,
+          "far": 0.1847599164926931,
+          "frr": 0.05323590814196242,
+          "true_accept_rate": 0.9467640918580376,
+          "true_reject_rate": 0.8152400835073069,
+          "tp": 907,
+          "tn": 781,
+          "fp": 177,
+          "fn": 51
+        }
+      }
+    }
+  }
+}

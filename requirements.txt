@@ -1,25 +1,59 @@
-numpy
+# ============================================================
+# Twins Thesis - Python Dependencies
+# ============================================================
+
+# ----------------------------
+# Core
+# ----------------------------
+numpy==1.26.4
 pandas
 PyYAML
-
-opencv-python
-Pillow
-rawpy
-
-torch
-torchvision
-facenet-pytorch
-
-mediapipe
-matplotlib
-
-tqdm
-
-pyreadr
-
-scikit-learn
-scikit-image
 scipy
 
+# ----------------------------
+# Image processing
+# ----------------------------
+opencv-python==4.11.0.86
+Pillow==10.2.0
+rawpy
+
+# ----------------------------
+# Classical machine learning
+# ----------------------------
+scikit-learn
+scikit-image
+
+# ----------------------------
+# Deep learning
+# IMPORTANT:
+# Install torch + torchvision separately with CUDA.
+# ----------------------------
+facenet-pytorch==2.6.0
+
+# ----------------------------
+# Face detection / landmarks
+# ----------------------------
+mediapipe
+
+# ----------------------------
+# Pretrained face recognition
+# ----------------------------
 deepface[pytorch]==0.0.101
 onnxruntime-gpu
+
+# ----------------------------
+# Visualization
+# ----------------------------
+matplotlib
+tensorboard
+
+# ----------------------------
+# Data / utilities
+# ----------------------------
+tqdm
+pyreadr
+
+# ----------------------------
+# Development / notebooks
+# ----------------------------
+ipykernel

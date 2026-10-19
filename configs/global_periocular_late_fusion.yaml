@@ -1,0 +1,87 @@
+input:
+  assignments_csv: "data/splits/usable_with_split_assignments.csv"
+  protocols_dir: "data/protocols"
+  periocular_manifest_csv: "data/metadata/periocular_manifest.csv"
+
+output:
+  checkpoints_dir: "checkpoints/global_periocular_late_fusion"
+  training_reports_dir: "reports/training/global_periocular_late_fusion"
+  calibration_dir: "reports/calibration/global_periocular_late_fusion"
+  final_reports_dir: "reports/global_periocular_late_fusion"
+
+columns:
+  image_id: "image_id"
+  subject_id: "subject_id"
+  family_id: "family_group_id"
+  monozygotic_group_id: "monozygotic_group_id"
+  split: "split"
+  fold: "fold"
+
+late_fusion:
+  seed: 42
+  validation_fold: 4
+
+  global_image_column: "aligned_112_arcface_path"
+  global_pretrained: "vggface2"
+  global_image_size: 160
+
+  local_image_column: "periocular_path"
+  local_height: 112
+  local_width: 224
+  local_embedding_dim: 256
+  local_pretrained_imagenet: true
+
+  training_protocols:
+    - "p0_controlled_neutral_frontal"
+    - "p1_controlled_expression"
+    - "p2_frontal_illumination"
+
+  validation_protocols:
+    p0_controlled_neutral_frontal: 0.40
+    p1_controlled_expression: 0.20
+    p2_frontal_illumination: 0.20
+    p3_frontal_all: 0.20
+
+  evaluation_protocols:
+    - "p0_controlled_neutral_frontal"
+    - "p1_controlled_expression"
+    - "p2_frontal_illumination"
+    - "p3_frontal_all"
+    - "p4_moderate_pose"
+    - "p5_profile"
+    - "p6_all_usable"
+
+  batch_size: 8
+  evaluation_batch_size: 8
+  pair_score_batch_size: 4096
+  num_workers: 2
+
+  samples_per_epoch: 6000
+  epochs: 15
+  final_epochs: 5
+  oof_fixed_epochs: 5
+
+  learning_rate: 0.00010
+  weight_decay: 0.00010
+
+  twin_margin: 0.15
+  unrelated_margin: 0.35
+  twin_loss_weight: 1.00
+  unrelated_loss_weight: 0.50
+  positive_compactness_weight: 0.20
+
+  max_genuine_pairs_per_subject: 50
+  max_cotwin_pairs_per_subject_pair: 100
+
+  alpha_step: 0.02
+
+  early_stopping_patience: 5
+  objective_min_delta: 0.0001
+
+  checkpoint_name: "periocular_metric_best.pt"
+  final_checkpoint_name: "periocular_metric_final.pt"
+
+  oof:
+    folds: [1, 2, 3, 4]
+    checkpoints_subdir: "oof"
+    fusion_file: "fusion_config.json"

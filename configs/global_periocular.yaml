@@ -1,0 +1,114 @@
+input:
+  assignments_csv: "data/splits/usable_with_split_assignments.csv"
+  protocols_dir: "data/protocols"
+  periocular_manifest_csv: "data/metadata/periocular_manifest.csv"
+
+output:
+  periocular_dir: "data/regions/periocular_224x112"
+  checkpoints_dir: "checkpoints/global_periocular"
+  training_reports_dir: "reports/training/global_periocular"
+  calibration_dir: "reports/calibration/global_periocular"
+  final_reports_dir: "reports/global_periocular"
+
+columns:
+  image_id: "image_id"
+  subject_id: "subject_id"
+  family_id: "family_group_id"
+  monozygotic_group_id: "monozygotic_group_id"
+  split: "split"
+  fold: "fold"
+
+periocular:
+  # High-resolution, loose full-face crop produced by the existing QC pipeline.
+  source_image_column: "aligned_448_fullface_path"
+
+  # Wide crop containing both eyes + eyebrows.
+  # Coordinates are fractions of the 448 full-face crop.
+  x_min: 0.10
+  y_min: 0.18
+  x_max: 0.90
+  y_max: 0.52
+
+  output_width: 224
+  output_height: 112
+  image_format: "png"
+
+global_periocular:
+  seed: 42
+  validation_fold: 4
+
+  # Global branch: exact same facenet-pytorch/VGGFace2 family used in the
+  # matched baseline and frontal Twin-Aware experiment.
+  global_image_column: "aligned_112_arcface_path"
+  global_pretrained: "vggface2"
+  global_image_size: 160
+  freeze_global: true
+
+  # Local branch consumes the offline periocular crops.
+  local_image_column: "periocular_path"
+  local_height: 112
+  local_width: 224
+  local_embedding_dim: 256
+  local_pretrained_imagenet: true
+
+  # First local ablation is intentionally frontal-first.
+  training_protocols:
+    - "p0_controlled_neutral_frontal"
+    - "p1_controlled_expression"
+    - "p2_frontal_illumination"
+
+  # Used for tuning/model selection on DEVELOPMENT only.
+  validation_protocols:
+    p0_controlled_neutral_frontal: 0.40
+    p1_controlled_expression: 0.20
+    p2_frontal_illumination: 0.20
+    p3_frontal_all: 0.20
+
+  # P0-P6 are scored for OOF calibration and the final locked evaluation.
+  evaluation_protocols:
+    - "p0_controlled_neutral_frontal"
+    - "p1_controlled_expression"
+    - "p2_frontal_illumination"
+    - "p3_frontal_all"
+    - "p4_moderate_pose"
+    - "p5_profile"
+    - "p6_all_usable"
+
+  batch_size: 32
+  evaluation_batch_size: 128
+  pair_score_batch_size: 4096
+  num_workers: 4
+
+  # Balanced on-the-fly pair sampling.
+  train_pairs_per_epoch: 12000
+  positive_probability: 0.50
+  # Among negative pairs, 90% are MZ co-twins and 10% unrelated.
+  cotwin_negative_probability: 0.90
+
+  epochs: 20
+
+  # After tuning, set BOTH to the best_epoch found on DEVELOPMENT.
+  final_epochs: 1
+  oof_fixed_epochs: 1
+
+  local_learning_rate: 0.00010
+  head_learning_rate: 0.00030
+  weight_decay: 0.00010
+
+  pair_head_hidden_1: 512
+  pair_head_hidden_2: 128
+  dropout: 0.30
+
+  max_genuine_pairs_per_subject: 50
+  max_cotwin_pairs_per_subject_pair: 100
+
+  early_stopping_patience: 5
+  objective_min_delta: 0.0001
+
+  checkpoint_name: "global_periocular_best.pt"
+  final_checkpoint_name: "global_periocular_final.pt"
+
+  oof:
+    folds: [1, 2, 3, 4]
+    checkpoints_subdir: "oof"
+    thresholds_file: "oof_thresholds.json"
