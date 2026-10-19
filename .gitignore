@@ -51,8 +51,36 @@ data/metadata/nd_twins_metadata_qc.csv
 # Processed images
 data/processed/
 
+# Generated feature arrays, region crops, and evaluation data
+data/features/
+data/regions/
+data/evaluation_pairs/
+data/protocols/
+data/splits/
+data/metadata/nd_twins_metadata_qc_*.csv
+
+# Binary arrays / serialized fitted models
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.safetensors
+
+# Dataset / model archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+
 # Generated reports
 reports/figures/
+reports/baselines/scores/
 reports/qc/audit/multiple_face_visualizations
 
 # Model checkpoints / trained weights

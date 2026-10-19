@@ -1,0 +1,18 @@
+paper,year,dataset,region_or_trait,condition,task,method,metric,reported_value_percent,comparability_grade,note
+Afaneh et al.,2017,ND-TWINS-2009-2010,whole face,natural-natural expression,verification,two-level fusion,EER,2.07,B,Same dataset and metric; exact split/protocol may differ.
+Afaneh et al.,2017,ND-TWINS-2009-2010,whole face,controlled illumination,verification,two-level fusion,EER,2.20,B,Same dataset and metric; exact split/protocol may differ.
+Afaneh et al.,2017,ND-TWINS-2009-2010,whole face,uncontrolled illumination,verification,two-level fusion,EER,4.04,B,Same dataset and metric; exact split/protocol may differ.
+Toygar et al.,2020,ND-TWINS-2009-2010,right profile face,controlled illumination,verification,BSIF,EER,4.82,B,Same dataset; exact profile protocol differs.
+Toygar et al.,2020,ND-TWINS-2009-2010,right profile face,uncontrolled illumination,verification,BSIF,EER,19.02,B,Same dataset; exact profile protocol differs.
+Toygar et al.,2020,ND-TWINS-2009-2010,left profile face,controlled illumination,verification,BSIF,EER,6.52,B,Same dataset; exact profile protocol differs.
+Toygar et al.,2020,ND-TWINS-2009-2010,left profile face,uncontrolled illumination,verification,BSIF,EER,13.04,B,Same dataset; exact profile protocol differs.
+Toygar et al.,2020,ND-TWINS-2009-2010,ear + profile fusion,controlled illumination,identification,proposed BSIF fusion,recognition_rate,100.00,B,Same dataset but multimodal identification.
+Toygar et al.,2020,ND-TWINS-2009-2010,ear + profile fusion,uncontrolled illumination,identification,proposed BSIF fusion,recognition_rate,99.45,B,Same dataset but multimodal identification.
+Mousavi et al.,2021,custom twin dataset,whole / regional face,all reported images,verification,M-SIFT / proposed features,EER,7.80,C,Different dataset; contextual comparison.
+Mousavi et al.,2021,custom twin dataset,whole / regional face,frontal images,verification,M-SIFT / proposed features,EER,8.10,C,Different dataset; contextual comparison.
+Mousavi et al.,2021,custom twin dataset,whole / regional face,PAN motion,verification,M-SIFT / proposed features,EER,10.10,C,Different dataset; contextual comparison.
+Sudhakar & Nithyanandam,2021,paper-specific twin set,frontal face,frontal,identification,fusion score method,accuracy,95.40,C,Different protocol; contextual comparison.
+Sami et al.,2022,twin + look-alike dataset,whole face,tailored similarity task,similarity verification,FaceNet,EER,7.98,C,Pair definition differs; twins are similarity-positive.
+Sami et al.,2022,twin + look-alike dataset,whole face,tailored similarity task,similarity verification,ArcFace R100,EER,10.32,C,Pair definition differs; twins are similarity-positive.
+Sami et al.,2022,twin + look-alike dataset,whole face,tailored similarity task,similarity verification,ElasticFace R100,EER,11.99,C,Pair definition differs; twins are similarity-positive.
+Sami et al.,2022,twin + look-alike dataset,whole face,tailored similarity task,similarity verification,MagFace,EER,19.14,C,Pair definition differs; twins are similarity-positive.

@@ -1,0 +1,184 @@
+input:
+  assignments_csv: "data/splits/usable_with_split_assignments.csv"
+  protocol_dir: "data/protocols"
+
+output:
+  pairs_dir: "data/evaluation_pairs"
+  features_dir: "data/features"
+  scores_dir: "reports/baselines/scores"
+  report_dir: "reports/baselines"
+  identification_dir: "reports/baselines/identification"
+
+columns:
+  image_id: "image_id"
+  subject_id: "subject_id"
+  family_id: "family_group_id"
+  monozygotic_group_id: "monozygotic_group_id"
+  split: "split"
+  fold: "fold"
+
+protocols:
+  - "p0_controlled_neutral_frontal"
+  - "p1_controlled_expression"
+  - "p2_frontal_illumination"
+  - "p3_frontal_all"
+  - "p4_moderate_pose"
+  - "p5_profile"
+  - "p6_all_usable"
+
+pair_generation:
+  seed: 42
+  max_genuine_pairs_per_subject: 50
+  max_cotwin_pairs_per_subject_pair: 100
+  unrelated_pairs_multiplier: 1.0
+
+evaluation:
+  seed: 42
+  far_targets: [0.01, 0.001]
+
+classical_features:
+  image_column: "aligned_112_fullface_path"
+  lbp:
+    enabled: true
+    radius: 2
+    points: 16
+    method: "uniform"
+  hog:
+    enabled: true
+    orientations: 9
+    pixels_per_cell: [8, 8]
+    cells_per_block: [2, 2]
+  gabor:
+    enabled: true
+    frequencies: [0.08, 0.16, 0.24]
+    thetas_degrees: [0, 45, 90, 135]
+
+pca:
+  enabled: true
+  image_column: "aligned_112_fullface_path"
+  resize: 64
+  components: 256
+  batch_size: 512
+
+pca_eigenfaces:
+  image_column: "aligned_112_fullface_path"
+  random_state: 42
+
+  variants:
+    pca_eigenfaces:
+      enabled: true
+      resize:
+        width: 64
+        height: 80
+      equalization: "histogram"
+      n_components: 512
+      component_standardization: false
+      matching_metric: "manhattan"
+
+    pca_eigenfaces_enhanced:
+      enabled: true
+      resize:
+        width: 64
+        height: 80
+      equalization: "clahe"
+      n_components: 512
+      component_standardization: true
+      matching_metric: "manhattan"
+
+texture_baselines:
+  image_column: "aligned_112_fullface_path"
+
+  lbp_partitioned:
+    enabled: true
+    resize:
+      width: 80
+      height: 80
+    grid:
+      rows: 5
+      columns: 5
+    clahe: false
+    scales:
+      - points: 8
+        radius: 1
+        method: "default"
+    root_histogram: false
+    matching_metric: "manhattan"
+
+  lbp_multiscale:
+    enabled: true
+    resize:
+      width: 110
+      height: 110
+    grid:
+      rows: 5
+      columns: 5
+    clahe: true
+    scales:
+      - points: 8
+        radius: 1
+        method: "uniform"
+      - points: 16
+        radius: 2
+        method: "uniform"
+    root_histogram: true
+    matching_metric: "manhattan"
+
+  lpq_partitioned:
+    enabled: true
+    resize:
+      width: 110
+      height: 110
+    grid:
+      rows: 5
+      columns: 5
+    clahe: true
+    window_size: 7
+    root_histogram: true
+    matching_metric: "manhattan"
+
+deep_models:
+  facenet512:
+    enabled: true
+    provider: "deepface"
+    backend: "pytorch"
+    model_name: "Facenet512"
+    image_column: "aligned_112_arcface_path"
+    normalization: "Facenet2018"
+  arcface_resnet34_deepface:
+    enabled: true
+    provider: "deepface"
+    backend: "pytorch"
+    model_name: "ArcFace"
+    image_column: "aligned_112_arcface_path"
+    normalization: "ArcFace"
+
+  # For a closer comparison with Sami et al. (ArcFace R100),
+  # use a validated R100 ONNX checkpoint and enable this entry.
+  arcface_r100:
+    enabled: false
+    provider: "onnx"
+    model_path: "models/baselines/arcface_r100.onnx"
+    image_column: "aligned_112_arcface_path"
+    input_size: 112
+    color_order: "rgb"
+    normalization: "minus_one_to_one"
+  elasticface_r100:
+    enabled: false
+    provider: "onnx"
+    model_path: "models/baselines/elasticface_r100.onnx"
+    image_column: "aligned_112_arcface_path"
+    input_size: 112
+    color_order: "rgb"
+    normalization: "minus_one_to_one"
+  magface:
+    enabled: false
+    provider: "onnx"
+    model_path: "models/baselines/magface.onnx"
+    image_column: "aligned_112_arcface_path"
+    input_size: 112
+    color_order: "rgb"
+    normalization: "minus_one_to_one"
+
+processing:
+  checkpoint_every: 100
+  onnx_batch_size: 128

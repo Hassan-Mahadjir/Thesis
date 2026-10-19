@@ -1,0 +1,56 @@
+input:
+  assignments_csv: "data/splits/usable_with_split_assignments.csv"
+
+output:
+  features_dir: "data/features"
+  scores_dir: "reports/baselines/scores"
+  checkpoints_dir: "checkpoints/twin_aware"
+
+columns:
+  image_id: "image_id"
+  subject_id: "subject_id"
+  family_id: "family_group_id"
+  monozygotic_group_id: "monozygotic_group_id"
+  split: "split"
+  fold: "fold"
+
+score_fusion:
+  source_models:
+    - "facenet512"
+    - "arcface_resnet34_deepface"
+  output_name: "facenet_arcface_twin_fusion"
+  optimization_task: "twin_verification"
+  alpha_step: 0.01
+
+twin_aware_facenet:
+  image_column: "aligned_112_arcface_path"
+  pretrained: "vggface2"
+  image_size: 160
+
+  validation_fold: 4
+  seed: 42
+
+  batch_size: 16
+  num_workers: 4
+  epochs: 20
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+
+  # Fine-tune only the upper part of FaceNet first.
+  unfreeze_modules:
+    - "mixed_7a"
+    - "repeat_3"
+    - "block8"
+    - "last_linear"
+    - "last_bn"
+
+  twin_margin: 0.25
+  unrelated_margin: 0.50
+
+  twin_loss_weight: 1.0
+  unrelated_loss_weight: 0.50
+  positive_compactness_weight: 0.10
+  preserve_pretrained_weight: 0.05
+
+  checkpoint_name: "twin_aware_facenet_best.pt"
+  final_checkpoint_name: "twin_aware_facenet_final.pt"

@@ -16,3 +16,10 @@ matplotlib
 tqdm
 
 pyreadr
+
+scikit-learn
+scikit-image
+scipy
+
+deepface[pytorch]==0.0.101
+onnxruntime-gpu

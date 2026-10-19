@@ -1,0 +1,114 @@
+{
+  "p0_controlled_neutral_frontal": {
+    "development": {
+      "eligible_subjects": 276,
+      "gallery_images": 276,
+      "probe_images": 501,
+      "rank_1_recognition_rate": 0.49700598802395207,
+      "rank_5_recognition_rate": 0.6606786427145709
+    },
+    "final_test": {
+      "eligible_subjects": 69,
+      "gallery_images": 69,
+      "probe_images": 127,
+      "rank_1_recognition_rate": 0.6456692913385826,
+      "rank_5_recognition_rate": 0.8582677165354331
+    }
+  },
+  "p1_controlled_expression": {
+    "development": {
+      "eligible_subjects": 278,
+      "gallery_images": 278,
+      "probe_images": 1281,
+      "rank_1_recognition_rate": 0.5932864949258392,
+      "rank_5_recognition_rate": 0.7103825136612022
+    },
+    "final_test": {
+      "eligible_subjects": 70,
+      "gallery_images": 70,
+      "probe_images": 323,
+      "rank_1_recognition_rate": 0.718266253869969,
+      "rank_5_recognition_rate": 0.8947368421052632
+    }
+  },
+  "p2_frontal_illumination": {
+    "development": {
+      "eligible_subjects": 276,
+      "gallery_images": 276,
+      "probe_images": 1033,
+      "rank_1_recognition_rate": 0.36302032913843174,
+      "rank_5_recognition_rate": 0.5382381413359149
+    },
+    "final_test": {
+      "eligible_subjects": 69,
+      "gallery_images": 69,
+      "probe_images": 271,
+      "rank_1_recognition_rate": 0.5092250922509225,
+      "rank_5_recognition_rate": 0.7527675276752768
+    }
+  },
+  "p3_frontal_all": {
+    "development": {
+      "eligible_subjects": 349,
+      "gallery_images": 349,
+      "probe_images": 5602,
+      "rank_1_recognition_rate": 0.41181720813995004,
+      "rank_5_recognition_rate": 0.541235273116744
+    },
+    "final_test": {
+      "eligible_subjects": 86,
+      "gallery_images": 86,
+      "probe_images": 1385,
+      "rank_1_recognition_rate": 0.5169675090252708,
+      "rank_5_recognition_rate": 0.7227436823104693
+    }
+  },
+  "p4_moderate_pose": {
+    "development": {
+      "eligible_subjects": 349,
+      "gallery_images": 349,
+      "probe_images": 12139,
+      "rank_1_recognition_rate": 0.1548727242771233,
+      "rank_5_recognition_rate": 0.20413543125463382
+    },
+    "final_test": {
+      "eligible_subjects": 86,
+      "gallery_images": 86,
+      "probe_images": 3002,
+      "rank_1_recognition_rate": 0.189873417721519,
+      "rank_5_recognition_rate": 0.282145236508994
+    }
+  },
+  "p5_profile": {
+    "development": {
+      "eligible_subjects": 348,
+      "gallery_images": 348,
+      "probe_images": 6231,
+      "rank_1_recognition_rate": 0.11410688493018777,
+      "rank_5_recognition_rate": 0.16433959236077675
+    },
+    "final_test": {
+      "eligible_subjects": 85,
+      "gallery_images": 85,
+      "probe_images": 1541,
+      "rank_1_recognition_rate": 0.15509409474367294,
+      "rank_5_recognition_rate": 0.24205061648280338
+    }
+  },
+  "p6_all_usable": {
+    "development": {
+      "eligible_subjects": 349,
+      "gallery_images": 349,
+      "probe_images": 18719,
+      "rank_1_recognition_rate": 0.1049735562797158,
+      "rank_5_recognition_rate": 0.148084833591538
+    },
+    "final_test": {
+      "eligible_subjects": 86,
+      "gallery_images": 86,
+      "probe_images": 4629,
+      "rank_1_recognition_rate": 0.13609850939727802,
+      "rank_5_recognition_rate": 0.22683084899546338
+    }
+  }
+}
