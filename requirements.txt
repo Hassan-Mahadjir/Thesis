@@ -25,9 +25,12 @@ scikit-image
 
 # ----------------------------
 # Deep learning
-# IMPORTANT:
-# Install torch + torchvision separately with CUDA.
+# CUDA 12.1 builds for the RTX 4090 (Python 3.12).
+# Keep these versions compatible with facenet-pytorch 2.6.0.
 # ----------------------------
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.2.2+cu121
+torchvision==0.17.2+cu121
 facenet-pytorch==2.6.0
 
 # ----------------------------

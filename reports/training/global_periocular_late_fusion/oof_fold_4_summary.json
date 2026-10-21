@@ -1,0 +1,8 @@
+{
+  "mode": "oof",
+  "epochs_completed": 1,
+  "best_epoch": null,
+  "best_validation_objective": null,
+  "best_validation_alpha": null,
+  "checkpoint": "C:\\Users\\25500560\\Desktop\\Thesis\\checkpoints\\global_periocular_late_fusion\\oof\\fold_4.pt"
+}

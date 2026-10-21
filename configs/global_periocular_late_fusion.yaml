@@ -51,15 +51,15 @@ late_fusion:
     - "p5_profile"
     - "p6_all_usable"
 
-  batch_size: 8
-  evaluation_batch_size: 8
+  batch_size: 64
+  evaluation_batch_size: 256
   pair_score_batch_size: 4096
-  num_workers: 2
+  num_workers: 4
 
   samples_per_epoch: 6000
   epochs: 15
-  final_epochs: 5
-  oof_fixed_epochs: 5
+  final_epochs: 1
+  oof_fixed_epochs: 1
 
   learning_rate: 0.00010
   weight_decay: 0.00010
